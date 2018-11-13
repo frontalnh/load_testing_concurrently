@@ -17,7 +17,7 @@ const (
 
 const (
 	logHeader = false
-	logBody   = false
+	logBody   = true
 )
 
 func task(i int) {
@@ -83,13 +83,14 @@ func main() {
 			}(i)
 		}
 
+		println()
+
 		for i := 0; i < calls; i++ {
 			<-ack
 		}
 
 		taskElapsed := time.Since(taskStart)
 		fmt.Printf("\n⌛  [Swarm #%v] \tElapsed: %v\n", swarmCalls, taskElapsed)
-		println()
 		time.Sleep(1 * time.Second)
 	}
 }
