@@ -68,6 +68,7 @@
 🔍   Request 9
 🔍   Request 10
 
+
 ✅   [Header] >>  &{200 OK 200 HTTP/1.1 1 1 map[Date:[Tue, 13 Nov 2018 02:31:39 GMT] X-Powered-By:[Express] Expires:[-1] Etag:[W/"1f-iPQ9/r7wjWGMEb/LV6fiufxwLS8"] Content-Length:[31] Vary:[Accept-Encoding] Connection:[keep-alive] Cache-Control:[private, no-cache, no-store, must-revalidate] Pragma:[no-cache] Content-Type:[application/json; charset=utf-8]] 0xc0001f0340 31 [] false false map[] 0xc00023c000 <nil>}
 
 ✅   [Header] >>  &{200 OK 200 HTTP/1.1 1 1 map[Pragma:[no-cache] Etag:[W/"1f-3Ldndn1jG8THIg1BYeyHobt0e9o"] Vary:[Accept-Encoding] Connection:[keep-alive] Cache-Control:[private, no-cache, no-store, must-revalidate] Expires:[-1] Content-Length:[31] Date:[Tue, 13 Nov 2018 02:31:39 GMT] X-Powered-By:[Express] Content-Type:[application/json; charset=utf-8]] 0xc0001f03c0 31 [] false false map[] 0xc000142100 <nil>}
