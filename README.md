@@ -7,6 +7,7 @@
 - Making an interval for each requests
 - Requests concurrently!
 - Check time elapsed
+- Swarm
 
 ## No logging
 
