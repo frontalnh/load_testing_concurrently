@@ -16,7 +16,7 @@ const (
 )
 
 const (
-	logHeader = true
+	logHeader = false
 	logBody   = false
 )
 
@@ -64,23 +64,32 @@ func task(i int) {
 
 }
 func main() {
-	start := time.Now()
-	ack := make(chan bool, calls)
+	swarmCalls := 0
+	taskCalls := 0
+	for {
+		println("==============================================\n")
+		taskStart := time.Now()
+		ack := make(chan bool, calls)
+		swarmCalls++
 
-	for i := 0; i < calls; i++ {
-		fmt.Println("🔍   Request", i)
-		// Uncomment to make an interval
-		// time.Sleep(interval * time.Millisecond)
-		go func(arg int) {
-			task(arg)
-			ack <- true
-		}(i)
+		for i := 0; i < calls; i++ {
+			taskCalls++
+			fmt.Println("🔍  Request", taskCalls)
+			// Uncomment to make an interval
+			// time.Sleep(interval * time.Millisecond)
+			go func(arg int) {
+				task(arg)
+				ack <- true
+			}(i)
+		}
+
+		for i := 0; i < calls; i++ {
+			<-ack
+		}
+
+		taskElapsed := time.Since(taskStart)
+		fmt.Printf("\n⌛  [Swarm #%v] \tElapsed: %v\n", swarmCalls, taskElapsed)
+		println()
+		time.Sleep(1 * time.Second)
 	}
-
-	for i := 0; i < calls; i++ {
-		<-ack
-	}
-
-	elapsed := time.Since(start)
-	fmt.Println("\n\n⌛  >>", elapsed)
 }
