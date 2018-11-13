@@ -1,4 +1,11 @@
-# load_testing
+😃 Have a load testing easily and simply.
+
+## Features
+
+- No cache request
+- Logging response
+- Making an interval for each requests
+- Requests concurrently
 
 ## No logging
 
