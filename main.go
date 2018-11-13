@@ -8,16 +8,16 @@ import (
 )
 
 const (
-	calls    = 50
-	interval = 70
+	calls    = 10 // How many calls
+	interval = 70 // Requests interval
 	url      = "http://localhost:3001/api/v1/stress"
 	method   = "GET"
 	cookie   = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYTFhMmY5NDYxZmEyMGQxZjQwY2I3YyIsImlhdCI6MTU0MTk5MDkzOCwiZXhwIjoxMDE4MTk5MDkzOH0.3gHE8_7dkK_8zwC2Q9G0m1D8PNZDNQFIAftvucpA3rU"
 )
 
 const (
-	logHeader = false
-	logBody   = true
+	logHeader = true
+	logBody   = false
 )
 
 func task(i int) {
@@ -48,6 +48,7 @@ func task(i int) {
 
 	if logHeader {
 		fmt.Println("✅   [Header] >> ", resp)
+		println()
 	}
 
 	if logBody {
@@ -68,6 +69,7 @@ func main() {
 
 	for i := 0; i < calls; i++ {
 		fmt.Println("🔍   Request", i)
+		// Uncomment to make an interval
 		// time.Sleep(interval * time.Millisecond)
 		go func(arg int) {
 			task(arg)
