@@ -9,15 +9,14 @@ import (
 
 const (
 	calls    = 10 // How many calls
-	interval = 70 // Requests interval
+	interval = 50 // Requests interval
 	url      = "http://localhost:3001/api/v1/stress"
-	method   = "GET"
-	cookie   = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYTFhMmY5NDYxZmEyMGQxZjQwY2I3YyIsImlhdCI6MTU0MTk5MDkzOCwiZXhwIjoxMDE4MTk5MDkzOH0.3gHE8_7dkK_8zwC2Q9G0m1D8PNZDNQFIAftvucpA3rU"
+	method   = "POST"
 )
 
 const (
 	logHeader = false
-	logBody   = true
+	logBody   = false
 )
 
 func task(i int) {
@@ -25,14 +24,12 @@ func task(i int) {
 	// Make a request
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, nil)
-	_cookie := http.Cookie{Name: "jwtToken", Value: cookie}
 	req.Header.Set("X-Powered-By", "Express")
 	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 	req.Header.Set("Connection", "keep-alive")
 	req.Header.Set("Cache-Control", "private, no-cache, no-store, must-revalidate")
 	req.Header.Set("Expires", "-1")
 	req.Header.Set("Pragma", "no-cache")
-	req.AddCookie(&_cookie)
 
 	if err != nil {
 		panic(err)
@@ -76,7 +73,7 @@ func main() {
 			taskCalls++
 			fmt.Println("🔍  Request", taskCalls)
 			// Uncomment to make an interval
-			// time.Sleep(interval * time.Millisecond)
+			time.Sleep(interval * time.Millisecond)
 			go func(arg int) {
 				task(arg)
 				ack <- true
